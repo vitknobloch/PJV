@@ -1,0 +1,39 @@
+----------------------------------
+Person:personal_number:location_x,location_y:health:timetable:home_x,home_y
+
+timetable = "pos_x,pos_y;pos_x,pos_y;;;;;;pos_x,pos_y;;;;;;;;;"
+(24 ';' separated segments either empty or with ',' separated pos_x and pos_y value)
+
+PersonConfirmation:personal_number:true/false
+----------------------------------
+Location:type:pos_x,pos_y(:whitelist)
+
+whitelist = personal_number1,personal_number2,personal_number3...
+(comma separated personal numbers of whitelisted persons)
+----------------------------------
+ContagionParameters:defaultSpreadChance:recoveryChance:deathChance:quarantineChance:Restaurants_bool:Free_time_ban_bool:Work_on_site_bool:Schools_open_bool:HomeSpreadMultiplier:WorkplaceSpreadMultiplier:SchoolSpreadMultiplier:RestaurantSpreadMultiplier
+ContagionParametersSet              //confirmation
+----------------------------------
+MovePeople                          //command
+PeopleMoved                         //confirmation
+----------------------------------
+CalculateHealth                     //command
+HealthCalculated                    //confirmation
+----------------------------------
+stats format - "healthy_count,infected_count,cured_count,quarantined_count,deceased_count,vaccinated_count"
+----------------------------------
+SendExtract:left_top_x,left_top_y:size_x,size_y     //command
+Extract:pos_x,pos_y;Location_type;location_stats
+(Starts with Extract: then ':' separated Location extracts in format specified above)
+----------------------------------
+SendStats                           //command
+Stats:formatted_stats
+----------------------------------
+SetUp:pos_x,pos_y:size_x,size_y     //command
+SimIsSet                            //confirmation
+----------------------------------
+Ping                                //command and confirmation
+----------------------------------
+ExitSim                             //command
+----------------------------------
+
